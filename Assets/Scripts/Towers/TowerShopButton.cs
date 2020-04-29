@@ -28,6 +28,8 @@ namespace DapperDino.TD.Towers
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            if (towerShop.Money < towerData.Price) { return; }
+
             previewInstance = Instantiate(towerData.PreviewPrefab);
         }
 
@@ -45,7 +47,7 @@ namespace DapperDino.TD.Towers
                     {
                         towerHolder.SetTower(towerData);
 
-                        //Spend money
+                        towerShop.SpendMoney(towerData.Price);
                     }
                 }
             }

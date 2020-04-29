@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DapperDino.TD.Enemies;
+using System;
 using UnityEngine;
 
 namespace DapperDino.TD.Towers
@@ -14,6 +15,11 @@ namespace DapperDino.TD.Towers
 
         public int Money => money;
 
+        private void OnEnable()
+        {
+            Enemy.OnKilled += HandleEnemyKilled;
+        }
+
         private void Start()
         {
             foreach(var towerData in towerDatas)
@@ -22,6 +28,25 @@ namespace DapperDino.TD.Towers
 
                 towerShopButtonInstance.Initialise(towerData, this);
             }
+        }
+
+        private void OnDisable()
+        {
+            Enemy.OnKilled -= HandleEnemyKilled;
+        }
+
+        private void HandleEnemyKilled(EnemyData enemyData)
+        {
+            money += enemyData.MoneyReward;
+
+            OnMoneyChanged?.Invoke(money);
+        }
+
+        public void SpendMoney(int amountToSpend)
+        {
+            money -= amountToSpend;
+
+            OnMoneyChanged?.Invoke(money);
         }
     }
 }
