@@ -10,11 +10,10 @@ namespace DapperDino.TD.Towers
         [SerializeField] private TMP_Text priceText = null;
         [SerializeField] private Image towerIconImage = null;
 
-        private bool isDragging;
-
         private Camera mainCamera;
         private TowerData towerData;
         private TowerShop towerShop;
+        private TowerPreview previewInstance;
 
         private void Start() => mainCamera = Camera.main;
 
@@ -29,20 +28,20 @@ namespace DapperDino.TD.Towers
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            isDragging = true;
+            previewInstance = Instantiate(towerData.PreviewPrefab);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (!isDragging) { return; }
+            if (previewInstance == null) { return; }
 
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            if(Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if(hit.collider.TryGetComponent<TowerHolder>(out var towerHolder))
+                if (hit.collider.TryGetComponent<TowerHolder>(out var towerHolder))
                 {
-                    if(towerHolder.Tower == null)
+                    if (towerHolder.Tower == null)
                     {
                         towerHolder.SetTower(towerData);
 
@@ -51,7 +50,7 @@ namespace DapperDino.TD.Towers
                 }
             }
 
-            isDragging = false;
+            Destroy(previewInstance.gameObject);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace DapperDino.TD.Towers
         [SerializeField] private float dps = 10f;
         [SerializeField] private float range = 5f;
         [SerializeField] private Sprite icon = null;
+        [SerializeField] private TowerPreview previewPrefab = null;
         [SerializeField] private Tower towerPrefab = null;
 
         public string Name => name;
@@ -17,6 +18,7 @@ namespace DapperDino.TD.Towers
         public float DPS => dps;
         public float Range => range;
         public Sprite Icon => icon;
+        public TowerPreview PreviewPrefab => previewPrefab;
         public Tower TowerPrefab => towerPrefab;
     }
 }
