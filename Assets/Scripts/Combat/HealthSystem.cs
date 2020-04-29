@@ -10,7 +10,7 @@ namespace DapperDino.TD.Combat
         [SerializeField] private int health = 100;
 
         public event Action<int> OnHealthChanged;
-        public static Action OnPlayerLose;
+        public static event Action OnPlayerLose;
 
         public int Health => health;
 

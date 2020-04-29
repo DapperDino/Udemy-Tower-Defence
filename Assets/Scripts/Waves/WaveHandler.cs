@@ -1,4 +1,5 @@
 ﻿using DapperDino.TD.Enemies;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace DapperDino.TD.Waves
         private float secondsUntilNextWave;
 
         private readonly Dictionary<EnemyData, int> enemiesToKill = new Dictionary<EnemyData, int>();
+
+        public static event Action OnPlayerWin;
 
         private void OnEnable()
         {
@@ -78,7 +81,7 @@ namespace DapperDino.TD.Waves
 
                 if (currentWave == numberOfWaves)
                 {
-                    //Player wins
+                    OnPlayerWin?.Invoke();
                     return;
                 }
 
