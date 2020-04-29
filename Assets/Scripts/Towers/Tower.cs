@@ -6,6 +6,13 @@ namespace DapperDino.TD.Towers
     {
         [SerializeField] private TowerData towerData = null;
 
+        private TowerHolder towerHolder;
+
         public TowerData TowerData => towerData;
+
+        public void Initialise(TowerHolder towerHolder)
+        {
+            this.towerHolder = towerHolder;
+        }
     }
 }
