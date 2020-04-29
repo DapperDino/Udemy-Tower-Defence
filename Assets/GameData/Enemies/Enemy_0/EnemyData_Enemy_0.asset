@@ -15,4 +15,4 @@ MonoBehaviour:
   damage: 15
   health: 50
   moneyReward: 20
-  movementSpeed: 5
+  movementSpeed: 3

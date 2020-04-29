@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DapperDino.TD.Enemies
 {
@@ -9,15 +10,33 @@ namespace DapperDino.TD.Enemies
         private Node targetNode;
         private Vector3 currentDirection;
 
+        private int health;
+
         private const float MinDistance = 0.1f;
 
+        public static event Action<EnemyData> OnKilled;
+
         public EnemyData EnemyData => enemyData;
+
+        private void Start() => health = enemyData.Health;
 
         private void Update()
         {
             if (targetNode == null) { return; }
 
             MoveToTarget();
+        }
+
+        public void DealDamage(int damage)
+        {
+            health = Mathf.Max(health - damage, 0);
+
+            if(health == 0)
+            {
+                OnKilled?.Invoke(enemyData);
+
+                Destroy(gameObject);
+            }
         }
 
         private void MoveToTarget()

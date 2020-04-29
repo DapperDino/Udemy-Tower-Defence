@@ -20,6 +20,7 @@ namespace DapperDino.TD.Waves
         private void OnEnable()
         {
             WaveDestination.OnEnemyReachedEnd += HandleEnemyKilled;
+            Enemy.OnKilled += HandleEnemyKilled;
         }
 
         private void Start()
@@ -31,6 +32,7 @@ namespace DapperDino.TD.Waves
         private void OnDisable()
         {
             WaveDestination.OnEnemyReachedEnd -= HandleEnemyKilled;
+            Enemy.OnKilled -= HandleEnemyKilled;
         }
 
         private void Update()
