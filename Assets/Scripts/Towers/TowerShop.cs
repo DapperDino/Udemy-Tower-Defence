@@ -48,5 +48,12 @@ namespace DapperDino.TD.Towers
 
             OnMoneyChanged?.Invoke(money);
         }
+
+        public void Sell(TowerData towerData)
+        {
+            money += towerData.Price;
+
+            OnMoneyChanged?.Invoke(money);
+        }
     }
 }
