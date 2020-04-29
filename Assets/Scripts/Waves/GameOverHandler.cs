@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DapperDino.TD.Combat;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace DapperDino.TD.Waves
@@ -15,11 +16,13 @@ namespace DapperDino.TD.Waves
         private void OnEnable()
         {
             WaveHandler.OnPlayerWin += HandlePlayerWin;
+            HealthSystem.OnPlayerLose += HandlePlayerLose;
         }
 
         private void OnDisable()
         {
             WaveHandler.OnPlayerWin -= HandlePlayerWin;
+            HealthSystem.OnPlayerLose -= HandlePlayerLose;
         }
 
         private void HandlePlayerWin()
@@ -34,6 +37,27 @@ namespace DapperDino.TD.Waves
                 PlayerPrefs.SetInt(HighestLevelIndex, levelIndexValue);
             }
             nextLevelIndex = levelIndexValue + 1;
+        }
+
+        private void HandlePlayerLose()
+        {
+            Time.timeScale = 0f;
+
+            playerLosePanel.SetActive(true);
+        }
+
+        public void Retry()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            Time.timeScale = 1f;
+        }
+
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene("Scene_Menu");
+
+            Time.timeScale = 1f;
         }
 
         public void GoToNext()
