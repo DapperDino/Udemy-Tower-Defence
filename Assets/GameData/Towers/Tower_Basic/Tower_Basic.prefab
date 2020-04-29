@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: -8368975996240795077}
   - component: {fileID: 6560734853309600589}
   - component: {fileID: 2587390177473889014}
+  - component: {fileID: 7355374615231538510}
   m_Layer: 0
   m_Name: Tower_Basic
   m_TagString: Untagged
@@ -107,6 +108,23 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &7355374615231538510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457192270035885689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7db52a379f8bd4c8dc000a0dade98f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.5
+  spawnPoint: {fileID: 5856081270089220553}
+  projectilePrefab: {fileID: 3123807513761981542, guid: 7ad0d549a06a6374c9827262a9d66c10,
+    type: 3}
+  launchForce: 10
 --- !u!1001 &3812642037152945755
 PrefabInstance:
   m_ObjectHideFlags: 0
