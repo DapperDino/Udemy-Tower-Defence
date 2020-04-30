@@ -32,7 +32,7 @@ namespace DapperDino.TD.Waves
             string activeSceneName = SceneManager.GetActiveScene().name;
             string levelIndex = activeSceneName.Split('_')[2];
             int levelIndexValue = int.Parse(levelIndex);
-            if(PlayerPrefs.GetInt(HighestLevelIndex, 1) < levelIndexValue)
+            if(PlayerPrefs.GetInt(HighestLevelIndex, 0) < levelIndexValue)
             {
                 PlayerPrefs.SetInt(HighestLevelIndex, levelIndexValue);
             }
